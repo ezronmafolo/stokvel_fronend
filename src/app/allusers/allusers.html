@@ -1,0 +1,27 @@
+<div class="container mt-4">
+  <h2 class="mb-4">All Users</h2>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>User ID</th>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>eMail</th>
+          <th>Cell Number</th>
+          <th>User Type</th>
+        </tr>
+      </thead>
+      <tbody>
+         <tr *ngFor="let tx of users" [routerLink]="['/statement', tx.id]" style="cursor:pointer">
+          <td>{{ tx.id }}</td>
+          <td>{{ tx.name }}</td>
+          <td>{{ tx.surname}}</td>
+          <td>{{ tx.email}}</td>
+          <td>{{ tx.cellphone}}</td>
+          <td>{{ tx.user_type}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

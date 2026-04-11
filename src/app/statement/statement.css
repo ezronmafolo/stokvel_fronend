@@ -1,0 +1,6 @@
+h2 {
+  font-weight: bold;
+}
+.table td, .table th {
+  vertical-align: middle;
+}

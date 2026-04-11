@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">Stokvel Front</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item" *ngIf="!loggedIn">
+          <a class="nav-link" routerLink="/login">Login</a>
+        </li>
+        <li class="nav-item" *ngIf="loggedIn === 'Member'">
+          <a class="nav-link" routerLink="" (click)="getStatement()">Statement</a>
+        </li>
+        <li class="nav-item" *ngIf="loggedIn === 'Admin' || loggedIn === 'owner'">
+          <a class="nav-link" routerLink="/allusers">All Users</a>
+        </li>
+        <li class="nav-item" *ngIf="loggedIn === 'Admin' || loggedIn === 'owner'">
+          <a class="nav-link" routerLink="/upload">Upload</a>
+        </li>
+        <li class="nav-item" *ngIf="loggedIn === 'Admin' || loggedIn === 'owner'">
+          <a class="nav-link" routerLink="/register">Register</a>
+        </li>
+        <li class="nav-item" *ngIf="loggedIn">
+          <a class="nav-link" routerLink="/" (click)="clearSession()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<router-outlet />

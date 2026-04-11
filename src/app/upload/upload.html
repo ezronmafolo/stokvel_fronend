@@ -1,0 +1,46 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow-lg p-4" style="width: 500px;">
+    <h3 class="text-center mb-4">Upload Document</h3>
+
+    <!-- Upload Form -->
+    <form #uploadForm="ngForm">
+      <div class="mb-3">
+        <label for="file" class="form-label">Choose Excel File</label>
+        <input
+          type="file"
+          id="file"
+          class="form-control"
+          (change)="handleFileInput($event)"
+          accept=".xlsx,.xls"
+          required
+        />
+      </div>
+
+      <button type="submit" class="btn btn-success w-100" [disabled]="!selectedFile">
+        Open
+      </button>
+    </form>
+
+    <!-- Preview Section -->
+    <div class="mt-4" *ngIf="previewData && previewData.length">
+      <h5 class="text-center mb-3">Preview</h5>
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm">
+          <thead>
+            <tr>
+              <th *ngFor="let key of previewKeys">{{ key }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of previewData">
+              <td *ngFor="let key of previewKeys">{{ row[key] }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <button (click)="onUpload()" class="btn btn-success w-100" *ngIf="uploadbtn">
+        Upload
+    </button>
+  </div>
+</div>

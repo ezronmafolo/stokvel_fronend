@@ -1,0 +1,21 @@
+<h1>WELCOME TO STOKVEL</h1>
+<h2>{{userName}}</h2>
+
+<div class="table-responsive" *ngIf="this.userName">
+    <table class="table table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>NO.</th>
+          <th>User Id</th>
+          <th>amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tx of topUsers; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ tx[0] }}</td>
+            <td>{{ tx[1] }}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
