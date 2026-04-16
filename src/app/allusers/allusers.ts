@@ -18,7 +18,7 @@ export class Allusers {
       let user_type
     if (typeof window !== 'undefined' && sessionStorage) {
       user_type = sessionStorage.getItem('User_type') || '';
-      if (user_type == 'Admin') {
+      if (user_type != 'Admin') {
         this.router.navigate(['/home']);
       }
     }
