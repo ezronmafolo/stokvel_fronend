@@ -35,8 +35,7 @@ onSubmit(): void {
       // Handle the response from the API service
       if (response == null) {
         console.error('User not found');
-        this.cd.detectChanges();
-        this.message = 'Incorrect loign details';
+        alert('User or Password Incorrect');
       } else {
         console.log(response);
         sessionStorage.setItem('userID', this.email);
@@ -49,7 +48,7 @@ onSubmit(): void {
     error: (error) => {
       // Handle any errors from the API service
       console.error(error);
-
+      alert('Something went wrong while trying to log you in. Please try again later.');
     },
     complete: () => {
       // Handle the completion of the API service call
