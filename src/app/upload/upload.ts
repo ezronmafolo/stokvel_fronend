@@ -20,9 +20,11 @@ export class Upload {
   uploadbtn = false
 
   user_type : any
+  user_ID : any
   constructor(private http: HttpClient,private service: DefaultService, private router: Router) {      
     if (typeof window !== 'undefined' && sessionStorage) {
       this.user_type = sessionStorage.getItem('User_type') || '';
+      this.user_ID = sessionStorage.getItem('userID') || '';
       if (this.user_type != 'Admin') {
         this.router.navigate(['/home']);
       }
@@ -81,7 +83,7 @@ export class Upload {
   const formData = new FormData();
   if (!this.selectedFile) return;
   formData.append("file", this.selectedFile);
-  this.service.uploadUploadPost(this.user_type, this.selectedFile).subscribe({
+  this.service.uploadUploadPost(this.user_ID, this.selectedFile).subscribe({
     next: response => console.log('Upload success:', response),
     error: error => console.error('Upload error:', error),
   });
