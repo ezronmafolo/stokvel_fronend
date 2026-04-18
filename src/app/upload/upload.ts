@@ -4,6 +4,7 @@ import * as XLSX from 'xlsx';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DefaultService } from '../../openapi/api/default.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload',
@@ -18,7 +19,15 @@ export class Upload {
   previewKeys: string[] = [];
   uploadbtn = false
 
-  constructor(private http: HttpClient,private service: DefaultService) {}
+  user_type : any
+  constructor(private http: HttpClient,private service: DefaultService, private router: Router) {      
+    if (typeof window !== 'undefined' && sessionStorage) {
+      this.user_type = sessionStorage.getItem('User_type') || '';
+      if (this.user_type != 'Admin') {
+        this.router.navigate(['/home']);
+      }
+    }
+  }
 
   handleFileInput(event: any) {
     this.selectedFile = event.target.files[0];
@@ -72,8 +81,7 @@ export class Upload {
   const formData = new FormData();
   if (!this.selectedFile) return;
   formData.append("file", this.selectedFile);
-  
-  this.service.uploadUploadPost(this.selectedFile).subscribe({
+  this.service.uploadUploadPost(this.user_type, this.selectedFile).subscribe({
     next: response => console.log('Upload success:', response),
     error: error => console.error('Upload error:', error),
   });
