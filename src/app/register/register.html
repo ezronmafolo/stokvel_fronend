@@ -69,16 +69,9 @@
       </div>
 
       <!-- User Type Dropdown -->
-      <div class="mb-3">
+      <div class="mb-3" *ngIf = loggedIn>
         <label for="userType" class="form-label">User Type</label>
-        <select
-          type="text"
-          id="userType"
-          class="form-select"
-          name="userType"
-          [(ngModel)]="userTypes"
-          required
-        >
+        <select type="text" id="userType" class="form-select" name="userType" [(ngModel)]="userTypes" required>
           <option value="Select a type" disabled selected>Select a type</option>
           <option *ngFor="let type of userTypes" [value]="type">{{ type }}</option>
         </select>

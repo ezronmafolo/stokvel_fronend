@@ -1,13 +1,13 @@
 import { FormsModule } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { NgFor } from '@angular/common';
 import { DefaultService } from '../../openapi';
 import { User } from '../../openapi/model/user';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [NgFor, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './register.html',
   styleUrls: ['./register.css']
 })
@@ -28,7 +28,12 @@ export class Register implements OnInit {
     user_type: ''
   };
 
-  constructor(private service: DefaultService) { }
+  loggedIn: string = ''
+  constructor(private service: DefaultService) {
+    if (typeof window !== 'undefined' && sessionStorage) {
+      this.loggedIn = sessionStorage.getItem('User_type') || '';
+    }
+   }
 
   ngOnInit(): void {
   }
